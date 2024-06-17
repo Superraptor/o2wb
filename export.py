@@ -76,10 +76,11 @@ def main():
         f = open(args.config)
         data = json.load(f)
         f.close()
+        return data
 
     # Initial call to print 0% progress
     counter = 0
-    printProgressBar(counter, 100, prefix = 'Progress:', suffix = 'Complete', length = 50)
+    data = printProgressBar(counter, 100, prefix = 'Progress:', suffix = 'Complete', length = 50)
 
     # Initialize WBI
 
@@ -275,3 +276,6 @@ def main():
         print(e)
         print('Undefined export serialization, defaulting to TTL.')
         g.serialize(destination=oFile, format='ttl')
+
+if __name__=="__main__": 
+    main() 

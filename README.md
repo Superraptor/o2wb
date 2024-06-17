@@ -7,6 +7,10 @@
 # O2WB: A tool for ontology reuse in Wikibase
 
 O2WB is a Python command line tool that enables ontology reuse in Wikibase, a popular data publishing platform. The tool aligns the Wikibase data model with RDF and facilitates the import and export of RDF Schema and OWL ontologies within Wikibase. This will help to tighten the connection between existing linked data resources and Wikibase instances.
+
+This is a fork of the original GitHub repository in order to make it function for my specific purposes. To use this repository, clone it by running `git clone https://github.com/Superraptor/o2wb.git`. Installing using `pip` will install a different version. This README will not be relevant otherwise.
+
+
 ## Features
 
 - Import ontologies from a local file or URL
@@ -20,15 +24,14 @@ O2WB is a Python command line tool that enables ontology reuse in Wikibase, a po
 
 ## Requirements
 
-- Python 3.x
-- rdflib 6.2.0+
-- wikibase-integrator 0.12.2+
-- antlr4-python3-runtime 4.9.3+
-- argparse 1.4.0+
+- rdflib 6.2.0
+- wikibase-integrator 0.12.3
+- antlr4-python3-runtime 4.9.3
+- argparse 1.4.0
 
 ## Installation
 
-O2WB can be installed by cloning this repository to your machine and installing the required packages from requirements.txt.
+O2WB can be installed by cloning this repository to your machine and installing the required packages from requirements.txt (this has been updated in this fork and is different from the original repository).
 
 Make sure the following requirements are fulfilled:
 - [The full Wikibase Suite is installed.](#Set-up-a-Wikibase-Suite-instance)
@@ -42,18 +45,23 @@ The full Wikibase Suite required for O2WB to work consists of the MediaWiki base
 
 There are two main approaches to setting up a Wikibase Suite instance, a [Docker-based setup (extended install)](https://www.mediawiki.org/wiki/Wikibase/Docker) and a [full manual setup](https://www.mediawiki.org/wiki/Wikibase/Suite). Follow the corresponding links for the respective installation manuals. In the Docker-based setup, the components of the Wikibase Suite are automatically set up in Docker containers, making the installation and configuration process much easier. In the full manual setup, each component must be installed separately. We recommend using the Docker-based setup.
 
+For this fork, it has only been tested in the Docker-based setup.
+
 
 ## Creating a bot account in Wikibase
 
 In order to use O2WB, you need to set up a Wikibase bot with the necessary permissions. Follow these steps:
 
-Create a new Wikibase bot with the following permissions related to page editing:
-- High-volume editing
-- Edit existing pages
-- Create, edit, and move pages
+1. Go to `Special:SpecialPages` on your MediaWiki instance and click on `Bot passwords`.
+2. Log in to your account.
+3. Enter a `Bot name` into the section labeled `Create a new bot password`.
+4. Click `Create`.
+5. Select the following permissions: (1) high-volume (bot) access, (2) edit existing pages, and (3) create, edit, and move pages.
+6. Make sure to get your bot's name (`username@botname`) and your bot password.
+
+Now that you have set up the Wikibase bot account, you are (almost) ready. Next, update your `config.json` file with your MediaWiki instance information and your bot information.
 
 
-Now that you have set up the Wikibase bot account, you are ready to start using O2WB to import and export ontologies.
 ## Importing an ontology
 
 The process of importing an ontology into Wikibase is straightforward with the help of the o2wb-imp command or the manual import.py script.
